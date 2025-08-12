@@ -78,3 +78,28 @@ class Solution {
         return ans;
     }
 }
+
+
+// GFG part
+class Solution {
+    public ArrayList<Integer> nextLargerElement(int[] arr) {
+        int n = arr.length;
+        int[] res = new int[n];
+        Stack<Integer> stk = new Stack<>();
+        
+        for (int i = n * 2 - 1; i >= 0; i--) {
+            while (!stk.isEmpty() && arr[stk.peek()] <= arr[i % n]) {
+                stk.pop();
+            }
+            if (i < n) {
+                res[i] = stk.isEmpty() ? -1 : arr[stk.peek()];
+            }
+            stk.push(i % n);
+        }
+        
+        ArrayList<Integer> ans = new ArrayList<>();
+        for (int val : res) ans.add(val);
+        return ans;
+    }
+}
+
