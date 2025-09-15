@@ -1,0 +1,37 @@
+# Maximum Gap – Sort and Linear Scan Approach (Java Solution)
+
+## Intuition
+The problem asks for the maximum difference between two successive elements in the sorted form of the array.  
+A simple idea is:  
+- If we sort the array, then the maximum gap must lie between some pair of adjacent elements.  
+
+## Approach
+1. Sort the array in ascending order.  
+2. Initialize a variable `m` to track the maximum difference.  
+3. Iterate through the array and compute differences between consecutive pairs.  
+4. Update `m` with the largest difference found.  
+5. Return `m` as the result.  
+
+## Complexity
+### Time Complexity
+- **O(n log n)** → Due to sorting.  
+- The iteration step is **O(n)**.  
+
+### Space Complexity
+- **O(1)** if sorting is done in-place (e.g., quicksort).  
+- **O(n)** if the sorting algorithm requires extra memory (e.g., merge sort).  
+
+## Code
+```java
+import java.util.Arrays;
+
+class Solution {
+    public int maximumGap(int[] arr) {
+        Arrays.sort(arr);
+        int m = 0;
+        for (int i = 0; i < arr.length - 1; i++) {
+            m = Math.max(m, arr[i + 1] - arr[i]);
+        }
+        return m;
+    }
+}
